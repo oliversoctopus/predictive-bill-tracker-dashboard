@@ -6,5 +6,5 @@
 
 \- Regulations.gov API: Public comments for sentiment; ethical: Anonymize comments, audit for demographic skew in submitters.
 
-\- Voteview.com CSVs: 118th Congress roll-call votes; sources: voteview.com/data (Lewis et al., 2025).
+\- Voteview.com CSVs: Voteview full votes/members CSVs for individual/party data; merged for richer features.
 
