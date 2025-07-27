@@ -144,51 +144,86 @@ def fetch_bill(bill_id, congress=118, bill_type='hr'):
 
 def fetch_bill_actions(bill_id, congress=118, bill_type='hr'):
     """
-    Fetch bill actions with more detail
+    Fetch all bill actions with pagination support
     """
-    url = f'https://api.congress.gov/v3/bill/{congress}/{bill_type}/{bill_id}/actions?api_key={CONGRESS_API_KEY}'
-    response = requests.get(url)
+    all_actions = []
+    offset = 0
+    limit = 250  # Maximum allowed by the API
     
-    if response.status_code == 200:
-        data = response.json()
-        actions_data = data.get('actions', [])
+    while True:
+        # Add limit and offset parameters for pagination
+        url = f'https://api.congress.gov/v3/bill/{congress}/{bill_type}/{bill_id}/actions?api_key={CONGRESS_API_KEY}&limit={limit}&offset={offset}'
+        response = requests.get(url)
         
-        actions = []
-        for a in actions_data:
-            # Handle committees field which can be a dict or list
-            committees_data = a.get('committees', {})
+        if response.status_code == 200:
+            data = response.json()
+            actions_data = data.get('actions', [])
             
-            # Extract committee names based on data structure
-            if isinstance(committees_data, dict):
-                # If it's a dict, look for 'item' field
-                items = committees_data.get('item', [])
-                if isinstance(items, list):
-                    committee_names = [c.get('name', '') for c in items if isinstance(c, dict)]
-                elif isinstance(items, dict):
-                    committee_names = [items.get('name', '')]
+            # If actions_data is empty, we've reached the end
+            if not actions_data:
+                break
+            
+            for a in actions_data:
+                # Handle committees field which can be a dict or list
+                committees_data = a.get('committees', {})
+                
+                # Extract committee names based on data structure
+                if isinstance(committees_data, dict):
+                    # If it's a dict, look for 'item' field
+                    items = committees_data.get('item', [])
+                    if isinstance(items, list):
+                        committee_names = [c.get('name', '') for c in items if isinstance(c, dict)]
+                    elif isinstance(items, dict):
+                        committee_names = [items.get('name', '')]
+                    else:
+                        committee_names = []
+                elif isinstance(committees_data, list):
+                    # If it's already a list of committees
+                    committee_names = [c.get('name', '') for c in committees_data if isinstance(c, dict)]
                 else:
                     committee_names = []
-            elif isinstance(committees_data, list):
-                # If it's already a list of committees
-                committee_names = [c.get('name', '') for c in committees_data if isinstance(c, dict)]
-            else:
-                committee_names = []
+                
+                action = {
+                    'bill_id': f"{congress}-{bill_type.upper()}-{bill_id}",
+                    'date': a.get('actionDate'),
+                    'text': a.get('text', ''),
+                    'type': a.get('type', ''),
+                    'action_code': a.get('actionCode', ''),
+                    'source_system': a.get('sourceSystem', {}).get('name', '') if isinstance(a.get('sourceSystem'), dict) else '',
+                    'committees': ', '.join(committee_names),
+                    'chamber': a.get('chamber', '')  # Add chamber info
+                }
+                all_actions.append(action)
             
-            action = {
-                'bill_id': bill_id,
-                'date': a.get('actionDate'),
-                'text': a.get('text'),
-                'type': a.get('type'),
-                'action_code': a.get('actionCode'),
-                'source_system': a.get('sourceSystem', {}).get('name', ''),
-                'committees': ', '.join(committee_names)
-            }
-            actions.append(action)
+            # Check if we got less than the limit - if so, we're done
+            if len(actions_data) < limit:
+                break
+            
+            # Otherwise, increment offset for next page
+            offset += limit
+            
+            # Safety check to prevent infinite loops
+            if offset > 5000:  # Reasonable upper limit
+                print(f"Warning: Reached maximum offset limit for bill {bill_id}")
+                break
+        else:
+            print(f"Error for actions {bill_id} (offset {offset}): {response.status_code}")
+            break
+    
+    # Create DataFrame and remove any duplicates
+    if all_actions:
+        df_actions = pd.DataFrame(all_actions)
+        # Remove duplicates based on date and text
+        df_actions = df_actions.drop_duplicates(subset=['date', 'text'], keep='first')
+        # Sort by date descending
+        df_actions['date_parsed'] = pd.to_datetime(df_actions['date'], errors='coerce')
+        df_actions = df_actions.sort_values('date_parsed', ascending=False)
+        df_actions = df_actions.drop('date_parsed', axis=1)
         
-        df_actions = pd.DataFrame(actions)
+        print(f"Fetched {len(df_actions)} unique actions for {bill_type.upper()}.{bill_id}")
         return df_actions
     else:
-        print(f"Error for actions {bill_id}: {response.status_code}")
+        print(f"No actions found for {bill_id}")
         return pd.DataFrame()
 
 def fetch_cosponsors(bill_id, congress=118, bill_type='hr'):
