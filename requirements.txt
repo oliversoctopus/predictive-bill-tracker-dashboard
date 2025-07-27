@@ -13,6 +13,3 @@ networkx
 imbalanced-learn
 schedule
 joblib
-dotenv
-jupyter
-seaborn
