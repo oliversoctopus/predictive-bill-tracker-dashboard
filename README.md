@@ -23,11 +23,11 @@ The tool helps citizens, advocates, and policymakers track bills, understand the
 - **Ethics**: Bias mitigation in models, transparent predictions, and data privacy focus.
 
 For full details, see [docs/project_report.md](docs/project_report.md).
-
+<!--
 ## Demo Video
 Watch the 7-minute demonstration: [YouTube Link](https://www.youtube.com/watch?v=PLACEHOLDER)  <!-- Replace with your video URL -->
 
-This video covers: Project motivation, data flow, model predictions, dashboard demo, and ethical notes.
+This video covers: Project motivation, data flow, model predictions, dashboard demo, and ethical notes.-->
 
 ## Installation & Setup
 ### Option 1
