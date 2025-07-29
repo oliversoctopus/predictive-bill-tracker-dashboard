@@ -38,7 +38,7 @@
 
 \- \*\*Societal Impact\*\*: Positive – increases transparency; negative – could discourage low-probability bills (note: "Focus on building support").
 
-\- \*\*Accessibility\*\*: Free/open; plain language summaries.
+\- \*\*Accessibility\*\*: Free/open; plain language summaries..
 
 
 
