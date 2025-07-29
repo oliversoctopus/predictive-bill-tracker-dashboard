@@ -25,7 +25,7 @@ The tool helps citizens, advocates, and policymakers track bills, understand the
 For full details, see [docs/project_report.md](docs/project_report.md).
 <!--
 ## Demo Video
-Watch the 7-minute demonstration: [YouTube Link](https://www.youtube.com/watch?v=PLACEHOLDER)  <!-- Replace with your video URL -->
+Watch the 7-minute demonstration: [YouTube Link](https://www.youtube.com/watch?v=PLACEHOLDER)  <!-- Replace with your video URL
 
 This video covers: Project motivation, data flow, model predictions, dashboard demo, and ethical notes.-->
 
@@ -35,8 +35,7 @@ Open the deployed Streamlit website with preloaded code and dependencies: https:
 
 ### Option 2
 Or, if you would like to set up the code yourself, then you can do the following:
-1. Clone the repo:
-git clone https://github.com/oliversoctopus/predictive-bill-tracker-dashboard.git
+1. Clone the repo: <br>git clone https://github.com/oliversoctopus/predictive-bill-tracker-dashboard</br>
 cd predictive-bill-tracker-dashboard
 2. Install dependencies (Python 3.8+ required):
 pip install -r requirements.txt  
