@@ -1,7 +1,7 @@
 # Attributions and License
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE](../LICENSE) file for details.
+This project is licensed under the MIT License with the Commons Clause - see the [LICENSE](../LICENSE) file for details.
 
 ## External Resources
 - **Congress.gov API**: Data source; U.S. Government public domain.

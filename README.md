@@ -1,6 +1,5 @@
 # Predictive Bill Tracker Dashboard
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://predictivebilltracker.streamlit.app/)
 
 ## Overview
@@ -67,7 +66,7 @@ For data extraction and model training, see [docs/data.md](docs/data.md) and [do
 See [docs/ethics.md](docs/ethics.md) for bias mitigation, transparency, and societal impact.
 
 ## License & Attributions
-- **License**: MIT (see LICENSE file).
+- **License**: MIT + Commons Clause (see LICENSE file).
 - **Attributions**: Congress.gov API, scikit-learn, Streamlit, Plotly. Full list in [docs/attributions.md](docs/attributions.md).
 
 ## Competition Submission
