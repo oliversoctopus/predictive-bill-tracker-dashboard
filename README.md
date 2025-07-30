@@ -22,15 +22,17 @@ The tool helps citizens, advocates, and policymakers track bills, understand the
 - **Ethics**: Bias mitigation in models, transparent predictions, and data privacy focus.
 
 For full details, see [docs/project_report.md](docs/project_report.md).
-<!--
-## Demo Video
-Watch the 7-minute demonstration: [YouTube Link](https://www.youtube.com/watch?v=PLACEHOLDER)  <!-- Replace with your video URL
 
-This video covers: Project motivation, data flow, model predictions, dashboard demo, and ethical notes.-->
+## Demo Video
+Watch the 7-minute demonstration: [YouTube Demonstration Video](https://www.youtube.com/watch?v=oLsZL_xDgDU&ab_channel=OliverFan)
+
+This video covers: Project motivation, technical architecture, dashboard demo, societal impact, and ideas for the future.
 
 ## Installation & Setup
 ### Option 1
 Open the deployed Streamlit website with preloaded code and dependencies: https://predictivebilltracker.streamlit.app
+
+*Note: If the website is closed due to inactivity, just relaunch it and wait 1-2 minutes for the necessary dependencies to be installed.*
 
 ### Option 2
 Or, if you would like to set up the code yourself, then you can do the following:
