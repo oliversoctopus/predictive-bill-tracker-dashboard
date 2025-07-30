@@ -32,7 +32,7 @@ This video covers: Project motivation, technical architecture, dashboard demo, s
 ### Option 1
 Open the deployed Streamlit website with preloaded code and dependencies: https://predictivebilltracker.streamlit.app
 
-*Note: If the website is closed due to inactivity, just relaunch it and wait 1-2 minutes for the necessary dependencies to be installed.*
+*Note: If the website is closed due to inactivity, click "Yes, get this app back up!" and wait 1-2 minutes for the necessary dependencies to be installed.*
 
 ### Option 2
 Or, if you would like to set up the code yourself, then you can do the following:
